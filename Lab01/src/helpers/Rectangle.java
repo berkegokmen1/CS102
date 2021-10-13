@@ -86,13 +86,7 @@ public class Rectangle {
     double cx = corner.getX();
     double cy = corner.getY();
 
-    if (px > cx && px < cx + width) {
-      if (py > cy && py < cy + height) {
-        return true;
-      }
-    }
-
-    return false;
+    return (px > cx && px < cx + width) && (py > cy && py < cy + height);
   }
 
   /**

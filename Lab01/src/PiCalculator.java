@@ -17,7 +17,7 @@ public class PiCalculator {
     System.out.print("Number of trials: ");
     numOfTrials = sc.nextInt();
 
-    do {
+    while (tries < numOfTrials) {
       p = rectangle.getRandomPoint();
 
       if (circle.contains(p)) {
@@ -25,11 +25,15 @@ public class PiCalculator {
       }
 
       tries += 1;
-    } while (tries <= numOfTrials);
+    }
 
-    final double piEstimation = 4.0 * hits / tries;
+    if (numOfTrials <= 0) {
+      System.out.println("NumOfTrials cannot be less than or equal to 0");
+    } else {
+      final double piEstimation = 4.0 * hits / tries;
 
-    System.out.println("Estimated value for π: " + piEstimation);
+      System.out.println("Estimated value for π: " + piEstimation);
+    }
 
     sc.close();
   }

@@ -15,6 +15,10 @@ public class Animal extends Creature {
     return this.age;
   }
 
+  public String method() {
+    return "method from super class (Animal)";
+  }
+
   public String toString() {
     return (
       ("name and age: " + this.getName() + " " + this.getAge() + "\n") +
