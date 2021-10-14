@@ -22,8 +22,9 @@ public class Animal extends Creature {
   public String toString() {
     return (
       ("name and age: " + this.getName() + " " + this.getAge() + "\n") +
-      ("this.getClass(): " + this.getClass() + "\n") +
-      ("super.getClass(): " + super.getClass())
+      ("this.getClassName(): " + this.getClassName() + "\n") +
+      ("super.getClassName(): " + super.getClassName() + "\n") +
+      ("this.getSuperClassName(): " + this.getSuperClassName())
     );
   }
 }

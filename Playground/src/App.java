@@ -20,10 +20,9 @@ public class App {
     for (Animal a : arr) {
       System.out.println(a);
     }
-
-    Bird bird = new Bird("birdBird", 22, false);
-    Capybara capybara = new Capybara("capyCapy", 11, 123);
-    Cow cow = new Cow("cowCow", 36, 100);
+    // Bird bird = new Bird("birdBird", 22, false);
+    // Capybara capybara = new Capybara("capyCapy", 11, 123);
+    // Cow cow = new Cow("cowCow", 36, 100);
     // System.out.println(animal.method());
     // System.out.println("animal instanceof Creature: " + (animal instanceof Creature));
     // System.out.println("bird instanceof Creature: " + (bird instanceof Creature));
