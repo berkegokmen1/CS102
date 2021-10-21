@@ -2,11 +2,9 @@ public class Super extends Abstract {
 
   protected String superProperty1;
   private String superProperty2;
-  private int num;
 
   public Super(String m, int s) {
     super(m);
-    num = s;
     superProperty1 = "superProperty1";
     superProperty2 = "superProperty2";
   }
