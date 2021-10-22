@@ -1,4 +1,5 @@
 import classes.Document;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -64,6 +65,7 @@ public class DocumentAnalyzer {
 
   public static void main(String[] args) throws Exception {
     final Scanner scanner = new Scanner(System.in);
+    boolean run = true;
 
     int numOfDocuments;
     Document[] documents;
@@ -72,13 +74,24 @@ public class DocumentAnalyzer {
 
     System.out.print("Enter the number of documents: ");
     numOfDocuments = scanner.nextInt();
+    while (numOfDocuments <= 0) {
+      System.out.print("Please enter a value more than or equal to 1: ");
+      numOfDocuments = scanner.nextInt();
+      System.out.println();
+    }
+
     documents = new Document[numOfDocuments];
 
     String currentFileName;
     for (int i = 1; i <= numOfDocuments; i++) {
-      System.out.print("Enter the name of the document " + i + ": ");
-      currentFileName = scanner.next();
-      documents[i - 1] = new Document(currentFileName);
+      try {
+        System.out.print("Enter the name of the document " + i + ": ");
+        currentFileName = scanner.next();
+        documents[i - 1] = new Document(currentFileName);
+      } catch (FileNotFoundException e) {
+        i -= 1;
+        System.out.println("File not found, please try a different file name.");
+      }
     }
 
     do {
@@ -87,9 +100,24 @@ public class DocumentAnalyzer {
         "2- Find the most frequent terms\n" +
         "3- Calculate tf-idf for each document"
       );
+
       System.out.print("Enter an option (x to quit): ");
-      option = scanner.nextInt();
-      System.out.println();
+      while (run && !scanner.hasNextInt()) {
+        String next = scanner.next();
+
+        if (next.charAt(0) == 'x') {
+          run = false;
+        } else {
+          System.out.print("Please enter an integer or 'x' to quit: ");
+        }
+      }
+
+      if (run) {
+        option = scanner.nextInt();
+        System.out.println();
+      } else {
+        option = 0;
+      }
 
       if (option == 1) {
         // Display the frequency of a user entered word
@@ -143,10 +171,13 @@ public class DocumentAnalyzer {
 
         System.out.println("");
       } else {
-        System.out.println("Invalid option.");
+        if (run) {
+          System.out.println("Invalid option.");
+        }
       }
-    } while (option != 'x');
+    } while (run);
 
+    System.out.println("\nBye!");
     scanner.close();
   }
 }

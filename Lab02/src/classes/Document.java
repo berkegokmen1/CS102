@@ -39,32 +39,31 @@ public class Document {
    * Reads the given file and counts each word
    */
   private void processDocument() throws Exception {
-    try {
-      File file = new File("src/" + fileName);
+    File file = new File("src/" + fileName);
 
-      Scanner reader = new Scanner(file);
+    if (!file.exists()) {
+      throw new FileNotFoundException("File not found");
+    }
 
-      while (reader.hasNext()) {
-        String data = reader.next();
+    Scanner reader = new Scanner(file);
 
-        int controlIndex = findTermIndex(data);
+    while (reader.hasNext()) {
+      String data = reader.next();
 
-        if (controlIndex != -1) {
-          terms[controlIndex].incrementCount();
-        } else {
-          terms[termIndex] = new Term(data);
-          terms[termIndex].incrementCount();
-          termIndex += 1;
-        }
+      int controlIndex = findTermIndex(data);
 
-        totalWordCount += 1;
+      if (controlIndex != -1) {
+        terms[controlIndex].incrementCount();
+      } else {
+        terms[termIndex] = new Term(data);
+        terms[termIndex].incrementCount();
+        termIndex += 1;
       }
 
-      reader.close();
-    } catch (FileNotFoundException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
+      totalWordCount += 1;
     }
+
+    reader.close();
   }
 
   /**
