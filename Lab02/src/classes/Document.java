@@ -74,7 +74,8 @@ public class Document {
    */
   private int findTermIndex(String term) {
     for (int i = 0; i < termIndex; i += 1) {
-      if (terms[i].getWord().equals(term)) {
+      String word = terms[i].getWord().replaceAll("[\\p{Punct}&&[^'-]]+", "");
+      if (word.equalsIgnoreCase(term)) {
         return i;
       }
     }
@@ -90,7 +91,7 @@ public class Document {
    */
   public int getCount(String word) {
     int index = findTermIndex(word);
-    if (index == -1) return -1;
+    if (index == -1) return 0;
 
     return terms[index].getCount();
   }
@@ -124,7 +125,9 @@ public class Document {
    * @return {@link Double} frequency
    */
   public double getFrequency(String word) {
-    return getCount(word) * 1.0 / totalWordCount;
+    int count = getCount(word);
+
+    return count * 1.0 / totalWordCount;
   }
 
   /**

@@ -35,9 +35,7 @@ public class DocumentAnalyzer {
    * @return {@link Double} result
    */
   public static double tf(String word, Document document) {
-    int count = document.getCount(word) < 0 ? 0 : document.getCount(word);
-
-    return count * 1.0 / document.getTotalWordCount();
+    return document.getFrequency(word);
   }
 
   /**
@@ -51,7 +49,7 @@ public class DocumentAnalyzer {
     int numOfDocsContainingWord = 0;
 
     for (Document d : documents) {
-      if (d.getCount(word) != -1) {
+      if (d.getCount(word) != 0) {
         numOfDocsContainingWord += 1;
       }
     }
