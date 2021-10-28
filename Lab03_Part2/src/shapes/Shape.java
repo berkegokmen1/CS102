@@ -11,6 +11,13 @@ public abstract class Shape implements Locatable, Drawable {
   protected boolean isSelected;
   protected boolean isHit;
 
+  /**
+   * Super implementation to initialize a {@link Shape}
+   *
+   * @param x int value for x coordinate
+   * @param y int value for y coordinate
+   * @param radius int value for radius of the circle
+   */
   public Shape(int x, int y) {
     this.x = x;
     this.y = y;
@@ -18,8 +25,20 @@ public abstract class Shape implements Locatable, Drawable {
     isHit = false;
   }
 
+  /**
+   * Method to calculate the area of a {@link Shape}
+   *
+   * @return {@link Double} area
+   */
   public abstract double getArea();
 
+  /**
+   * Method to check if the given point is inside the circle
+   *
+   * @param x coordinate of the point
+   * @param y coordinate of the point
+   * @return {@link Boolean} result
+   */
   public abstract boolean contains(int x, int y);
 
   @Override

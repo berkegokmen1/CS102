@@ -4,6 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * @(#)BalloonGame.java
+ * Class that holds frame and game {@link BalloonsGamePanel}
+ *
+ * @author Berke Gokmen
+ * @date 2021/10/28
+ */
 public class BalloonGame {
 
   public static void main(String[] args) throws Exception {
@@ -31,6 +38,7 @@ public class BalloonGame {
     panel.setBackground(Color.GRAY);
     frame.add(panel);
 
+    // Frame setup
     frame.setUndecorated(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setTitle("Balloon Game - Berke");

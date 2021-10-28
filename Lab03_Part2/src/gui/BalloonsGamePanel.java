@@ -12,6 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * @(#)BalloonsGamePanel.java
+ * Custom JPanel class that holds every single drawing
+ *
+ * @author Berke Gokmen
+ * @date 2021/10/28
+ */
 public class BalloonsGamePanel extends JPanel {
 
   public static Random R;
@@ -38,6 +45,15 @@ public class BalloonsGamePanel extends JPanel {
 
   private int points;
 
+  /**
+   * @(#)TimerListener
+   * Custom {@link ActionListener} implementation to work with {@link Timer}
+   * <li>Tracks the amount of time elapsed</li>
+   * <li>Updates the game 30 frames every second</li>
+   *
+   * @author Berke Gokmen
+   * @date 2021/10/28
+   */
   private class TimerListener implements ActionListener {
 
     @Override
@@ -83,6 +99,16 @@ public class BalloonsGamePanel extends JPanel {
     }
   }
 
+  /**
+   * @(#)BurstListener
+   * Custom {@link MouseListener} implementation
+   * <li>Gets fired on mouse clicks</li>
+   * <li>Selects balloons according to mouse position</li>
+   * <li>Puts a little red dot to where the click is</li>
+   *
+   * @author Berke Gokmen
+   * @date 2021/10/28
+   */
   private class BurstListener implements MouseListener {
 
     @Override
@@ -104,12 +130,21 @@ public class BalloonsGamePanel extends JPanel {
     public void mouseExited(MouseEvent e) {}
   }
 
+  /**
+   * Initializes a {@link BalloonsGamePanel} object
+   */
   public BalloonsGamePanel() {
     super();
     setSize(SCREEN_SIZE);
     setupGame();
   }
 
+  /**
+   * Method to setup the game
+   * <li>Removes labels if they exist</li>
+   * <li>Initializes or reinitializes all the instance variables of the game</li>
+   * <li>Starts the timer and the game</li>
+   */
   private void setupGame() {
     if (label != null) {
       this.remove(label);
@@ -141,6 +176,9 @@ public class BalloonsGamePanel extends JPanel {
     timer.start();
   }
 
+  /**
+   * Creates a new balloon at a random position using {@link Random}
+   */
   private void createRandomBalloon() {
     int x = R.nextInt(this.getWidth());
     int y = R.nextInt(this.getHeight());
@@ -150,6 +188,10 @@ public class BalloonsGamePanel extends JPanel {
     balloons.add(balloon);
   }
 
+  /**
+   * Creates a new balloons at the start of the game using
+   * @see #createRandomBalloon()
+   */
   private void createRandomBalloons() {
     for (int i = 1; i <= RANDOM_NUMBER_BALLOONS; i++) {
       this.createRandomBalloon();
@@ -161,6 +203,13 @@ public class BalloonsGamePanel extends JPanel {
     balloons.draw(g);
   }
 
+  /**
+   * Method to put a little red dot at the mouse position
+   *
+   * @param g Graphics object
+   * @param x position
+   * @param y position
+   */
   public void putDot(Graphics g, int x, int y) {
     g.setColor(Color.RED);
     g.drawOval(x - DOT_RADIUS, y - DOT_RADIUS, DOT_RADIUS * 2, DOT_RADIUS * 2);
