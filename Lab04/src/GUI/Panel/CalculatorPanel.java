@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
  * @(#)CalculatorPanel.java
@@ -56,6 +57,7 @@ public class CalculatorPanel extends JPanel implements CountInformer {
   public CalculatorPanel() {
     super();
     this.setLayout(new BorderLayout());
+    this.setBorder(new EmptyBorder(5, 10, 5, 10));
     this.setSize(DIMENSION);
 
     this.initComponents();
@@ -71,7 +73,11 @@ public class CalculatorPanel extends JPanel implements CountInformer {
    * </ul>
    */
   private void initButtons() {
-    this.buttonsPanel = new JPanel(new GridLayout(4, 2));
+    final GridLayout gridLayout = new GridLayout(4, 2);
+    gridLayout.setHgap(5);
+    gridLayout.setVgap(5);
+
+    this.buttonsPanel = new JPanel(gridLayout);
 
     this.operations =
       new Operation[] {

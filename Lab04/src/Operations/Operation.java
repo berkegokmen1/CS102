@@ -19,7 +19,7 @@ public abstract class Operation {
    * @param nameOfTheMethod {@link String} value that represents the name of the method
    */
   public Operation(boolean isBinary, String nameOfTheMethod) {
-    timesCalled = 0;
+    this.timesCalled = 0;
     this.isBinary = isBinary;
     this.nameOfTheMethod = nameOfTheMethod;
   }

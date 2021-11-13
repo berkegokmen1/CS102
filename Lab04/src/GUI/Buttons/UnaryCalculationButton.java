@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -35,6 +36,7 @@ public class UnaryCalculationButton extends CalculationButton {
     CountInformer informer
   ) {
     super(operation, number1Field, number2Field, resultLabel, informer);
+    this.setBackground(new Color(255, 130, 130));
   }
 
   @Override
@@ -49,6 +51,13 @@ public class UnaryCalculationButton extends CalculationButton {
     // https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
     if (!num1Text.matches("-?\\d+(\\.\\d+)?")) {
       this.number1Field.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+
+      JOptionPane.showMessageDialog(
+        this,
+        "Please enter a valid number",
+        "Error",
+        JOptionPane.WARNING_MESSAGE
+      );
     } else {
       final double num1 = Double.valueOf(num1Text);
 
@@ -60,11 +69,8 @@ public class UnaryCalculationButton extends CalculationButton {
 
       this.number1Field.setBorder(BorderFactory.createEmptyBorder());
 
-      this.resultLabel.setText(
-          "" + ((result == ((int) result)) ? ((int) result) : result)
-        );
+      this.resultLabel.setText("" + result);
+      this.informer.countUpdated();
     }
-
-    this.informer.countUpdated();
   }
 }

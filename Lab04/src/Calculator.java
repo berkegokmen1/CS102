@@ -16,7 +16,7 @@ public class Calculator {
 
     // Frame setup
     frame.getContentPane().add(calculatorPanel);
-    frame.setSize(CalculatorPanel.DIMENSION);
+    frame.setMinimumSize(CalculatorPanel.DIMENSION);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLocationByPlatform(true);
     frame.setVisible(true);

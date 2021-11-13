@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -50,6 +51,10 @@ public class CalculationButton extends JButton implements ActionListener {
 
     this.setText(operation.getNameOfTheMethod() + "\n(0)");
     this.addActionListener(this);
+
+    this.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 100)));
+    this.setOpaque(true);
+    this.setBackground(new Color(200, 200, 200));
   }
 
   /**
@@ -82,7 +87,7 @@ public class CalculationButton extends JButton implements ActionListener {
     }
 
     if (!num2Text.matches("-?\\d+(\\.\\d+)?")) {
-      number2Field.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+      this.number2Field.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
 
       isOperationOk = false;
     } else {
@@ -95,11 +100,15 @@ public class CalculationButton extends JButton implements ActionListener {
 
       final double result = this.operation.calculateResult(num1, num2);
 
-      this.resultLabel.setText(
-          "" + (result == ((int) result) ? (int) result : result)
-        );
+      this.resultLabel.setText("" + result);
+      this.informer.countUpdated();
+    } else {
+      JOptionPane.showMessageDialog(
+        this,
+        "Please enter valid numbers",
+        "Error",
+        JOptionPane.WARNING_MESSAGE
+      );
     }
-
-    this.informer.countUpdated();
   }
 }
